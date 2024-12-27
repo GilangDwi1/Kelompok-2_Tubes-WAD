@@ -6,13 +6,13 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/aa', function () {
     return view('home');
 })->middleware('auth');
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('auth.authenticate');
+Route::post('/home', [AuthController::class, 'authenticate'])->name('auth.authenticate');
 
 // Register
 Route::get('/register', [AuthController::class, 'register'])->name('auth.register');

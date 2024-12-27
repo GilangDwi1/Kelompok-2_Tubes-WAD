@@ -22,18 +22,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{route('home')}}">Kedai Silvi</a>
-              <a class="navbar-brand" href="{{route('home')}}">Home </a>
+              {{-- <a class="navbar-brand" href="{{route('home')}}">Kedai Silvi</a> --}}
+              {{-- <a class="navbar-brand" href="{{route('home')}}">Home </a> --}}
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="caret"></span></a>
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a><i class="fa fa-power-off"></i> Log Out</a></li>
+                    <li>
+                        <form action="{{ route('auth.logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link" style="text-decoration: none; color: inherit;">
+                                <i class="fa fa-power-off"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
                   </ul>
                 </li>
               </ul>
