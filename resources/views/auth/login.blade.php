@@ -20,10 +20,10 @@
       }
       .form-signin {
         background-color: white;
-        opacity: 0.8; 
+        opacity: 0.8;
         padding: 20px;
-        border-radius: 10px; 
-        width: 350px; 
+        border-radius: 10px;
+        width: 350px;
       }
       .btn-container {
         display: flex;
@@ -35,7 +35,8 @@
     <main>
       <div class="form-signin">
         <h2>Selamat Datang di Kedai Silvi </h2>
-        <form action="">
+        <form action="{{ route('auth.authenticate') }}" method="POST">
+            @csrf
           <label for="username">Username</label>
           <br>
           <input style="width: 85%;" type="text" id="username" placeholder="Silahkan Masukkan Username!!!" required>
@@ -45,7 +46,7 @@
           <br>
           <input style="width: 85%;" type="password" id="password" placeholder="Silahkan Masukkan Password!!!" required>
           <br>
-          <p style="margin-top:2px;">belum punya akun? <a href="">silahkan register disini</a></p>
+          <p style="margin-top:2px;">belum punya akun? <a href="{{ route('auth.register') }}">silahkan register disini</a></p>
           <button type="submit" class="btn btn-primary">Masuk</button>
         </form>
       </div>
