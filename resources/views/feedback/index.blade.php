@@ -1,17 +1,17 @@
 @extends('layouts.app')
-@section('admin')
+@section('content')
 
     {{-- Hero Section --}}
     <div class="hero-section text-center mb-4">
-        <h1 class="mt-3 fw-bold text-primary">Menu</h1>
-        <p class="text-muted">Menu Kami.</p>
+        <h1 class="mt-3 fw-bold text-primary">Feedback Kami</h1>
+        <p class="text-muted">Kami menghargai setiap pendapat dan saran Anda.</p>
     </div>
 
-    {{-- Button Tambah Menu --}}
+    {{-- Button Tambah Feedback --}}
     <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
-        <a href="{{ route('menu.create') }}" class="btn btn-light d-flex align-items-center gap-2 px-4 py-2 shadow rounded-pill border border-primary">
+        <a href="{{ route('feedback.create') }}" class="btn btn-light d-flex align-items-center gap-2 px-4 py-2 shadow rounded-pill border border-primary">
             <span class="material-symbols-rounded fs-5 text-primary">add</span>
-            <span class="fw-semibold text-primary">Tambahkan Menu</span>
+            <span class="fw-semibold text-primary">Tambahkan Feedback</span>
         </a>
     </div>
 
@@ -23,15 +23,15 @@
         </div>
     @endif
 
-    {{-- Tabel Menu --}}
+    {{-- Tabel Feedback --}}
     <div class="card shadow-sm border-0 rounded-4">
         <div class="card-header bg-primary text-white rounded-top-4">
-            <h4 class="m-0">Daftar Menu</h4>
+            <h4 class="m-0">Daftar Feedback</h4>
         </div>
         <div class="card-body">
-            @if ($menus->isEmpty());
+            @if ($feedbacks->isEmpty())
                 <div class="text-center text-muted">
-                    <p>Belum ada menu yang ditambahkan.</p>
+                    <p>Belum ada feedback yang ditambahkan.</p>
                 </div>
             @else
                 <table class="table table-hover align-middle">
@@ -39,23 +39,22 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Harga</th>
-                            <th scope="col">Kategori</th>
+                            <th scope="col">Isi</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($menus as $menu)
+                        @foreach ($feedbacks as $feedback)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $menu->nama }}</td>
-                                <td>{{ $menu->harga }}</td>
-                                <td>{{ $menu->kategori }}</td>
+                                <td>{{ $feedback->nama }}</td>
+                                <td>{{ $feedback->isi }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('admin.show', $menu->id) }}" class="btn btn-outline-info btn-sm rounded-pill">Detail</a> --}}
-                                    <a href="{{ route('menu.edit', $menu->id) }}" class="btn btn-outline-warning btn-sm rounded-pill">Edit</a>
-                                    <form action="{{ route('menu.destroy', $menu->id) }}" method="post" class="d-inline">
+                                    <a href="{{ route('feedback.show', $feedback->id) }}" class="btn btn-outline-info btn-sm rounded-pill">Detail</a>
+                                    <a href="{{ route('feedback.edit', $feedback->id) }}" class="btn btn-outline-warning btn-sm rounded-pill">Edit</a>
+                                    <form action="{{ route('feedback.destroy', $feedback->id) }}" method="post" class="d-inline">
                                         @csrf
-                                        @method('DELETE')
+                                        @method('delete')
                                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill">Hapus</button>
                                     </form>
                                 </td>

@@ -7,17 +7,26 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\StatusController;
+
 
 // ROUTE LOGIN
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 // ROUTES WITH AUTH MIDDLEWARE
+<<<<<<< HEAD
 // Admin Dashboard
 Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard');
+=======
+    // Admin Dashboard
+
+
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+>>>>>>> 33485ccea547c1b36116f7b10e48ec99815ced45
 Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 
 // Logout
@@ -37,6 +46,7 @@ Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
     Route::delete('/{menu}', [MenuController::class, 'destroy'])->name('destroy'); // Delete
 });
 
+<<<<<<< HEAD
 // ROUTE FOR STATUS MANAGEMENT
 Route::resource('status', StatusController::class)->names([
     'index' => 'status.index',
@@ -47,3 +57,16 @@ Route::resource('status', StatusController::class)->names([
     'update' => 'status.update',
     'destroy' => 'status.destroy',
 ]);
+=======
+// Feedback
+Route::resource('feedback', FeedbackController::class);
+
+Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], function () {
+    Route::get('/', [FeedbackController::class, 'index'])->name('index'); // Read
+    Route::get('/create', [FeedbackController::class, 'create'])->name('create'); // Create form
+    Route::post('/', [FeedbackController::class, 'store'])->name('store'); // Store data
+    Route::get('/{post}/edit', [FeedbackController::class, 'edit'])->name('edit'); // Edit form
+    Route::put('/{post}', [FeedbackController::class, 'update'])->name('update'); // Update data
+    Route::delete('/{post}', [FeedbackController::class, 'destroy'])->name('destroy'); // Delete
+});
+>>>>>>> 33485ccea547c1b36116f7b10e48ec99815ced45
