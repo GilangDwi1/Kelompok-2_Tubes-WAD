@@ -34,6 +34,12 @@
                     <li><a></a></li>
                     <li role="separator" class="divider"></li>
                     <li>
+                        <form action="{{ route('login') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link" style="text-decoration: none; color: inherit;">
+                                <i class="fa fa-power-off"></i> Login
+                            </button>
+                        </form>
                         <form action="{{ route('auth.logout') }}" method="POST" style="display: inline;">
                             @csrf
                             <button type="submit" class="btn btn-link" style="text-decoration: none; color: inherit;">

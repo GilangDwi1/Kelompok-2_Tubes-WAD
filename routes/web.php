@@ -1,22 +1,13 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 
-Route::get('/aa', function () {
-    return view('home');
-})->middleware('auth');
+Route::get('/register', [UserController::class, 'showRegistrationForm']);
+Route::post('/register', [UserController::class, 'register'])->name('register');
 
-// Login
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/home', [AuthController::class, 'authenticate'])->name('auth.authenticate');
-
-// Register
-Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
-Route::post('/register', [AuthController::class, 'store'])->name('auth.store');
-
-// Logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/login', [UserController::class, 'showLoginForm']);
+Route::post('/login', [UserController::class, 'login'])->name('login');
