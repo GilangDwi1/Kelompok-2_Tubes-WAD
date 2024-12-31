@@ -16,7 +16,9 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 
 // ROUTES WITH AUTH MIDDLEWARE
     // Admin Dashboard
-Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware(['']);
+
+
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware('admin');;
 Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 
     // // Home
