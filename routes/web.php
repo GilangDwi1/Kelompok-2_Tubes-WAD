@@ -20,7 +20,7 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
     // Admin Dashboard
 
 
-Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware('admin');;
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware('admin');
 Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 
     // // Home
