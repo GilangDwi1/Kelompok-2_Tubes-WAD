@@ -12,10 +12,8 @@
 <body>
     <div class="container">
         <div class="col-md-12">
-            <!-- Navbar -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <!-- Navbar Header -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
@@ -25,39 +23,28 @@
                         </button>
                         <a class="navbar-brand" href="#">Aplikasi Kedai Silvi</a>
                     </div>
-
-                    <!-- Navbar Links -->
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- Navbar Menu -->
                             <li>
-                                <a href="#main-content" class="nav-item btn-menu">
+                                <a href="{{ route('admin.dashboard') }}" class="nav-item btn-menu">
                                     <i class="fa fa-bars"></i> Menu
                                 </a>
                             </li>
-
-                            <!-- Keranjang -->
                             <li>
                                 <a href="/keranjang" class="nav-item btn-cart">
                                     <i class="fa fa-shopping-cart"></i> Keranjang
                                 </a>
                             </li>
-
-                            <!-- Cek Status Pemesanan -->
                             <li>
-                                <a href="{{ route('status.index') }}" class="nav-item btn-status">
+                                <a href="/cek-status" class="nav-item btn-status">
                                     <i class="fa fa-list-alt"></i> Cek Status Pemesanan
                                 </a>
                             </li>
-
-                            <!-- Feedback -->
                             <li>
                                 <a href="/feedback" class="nav-item btn-feedback">
                                     <i class="fa fa-comment"></i> Feedback
                                 </a>
                             </li>
-
-                            <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle nav-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-user"></i> <span class="caret"></span>
@@ -78,13 +65,43 @@
                 </div>
             </nav>
 
-            <!-- Page Content -->
-            @yield('admin')
-            @yield('client')
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Waktu Pemesanan</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($status as $status)
+                        <tr>
+                            <td>{{ $status->nama }}</td>
+                            <td>{{ $status->tanggal_pesanan }}</td>
+                            <td>{{ $status->waktu_pemesanan }}</td>
+                            <td>{{ $status->status }}</td>
+                            <td>
+                                <a href="{{ route('status.edit', $status->id) }}" class="btn btn-warning btn-sm">
+                                    Update
+                                </a>
+                                <form action="{{ route('status.destroy', $status->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

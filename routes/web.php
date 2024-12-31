@@ -9,20 +9,18 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\StatusController;
 
 // ROUTE LOGIN
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 // ROUTES WITH AUTH MIDDLEWARE
-    // Admin Dashboard
-Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware(['']);
+// Admin Dashboard
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard');
 Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 
-    // // Home
-    // Route::get('home', [HomeController::class, 'index'])->name('home');
-
-    // // Logout
+// Logout
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 // ROUTE REGISTER
@@ -38,3 +36,14 @@ Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
     Route::put('/{post}', [MenuController::class, 'update'])->name('update'); // Update data
     Route::delete('/{menu}', [MenuController::class, 'destroy'])->name('destroy'); // Delete
 });
+
+// ROUTE FOR STATUS MANAGEMENT
+Route::resource('status', StatusController::class)->names([
+    'index' => 'status.index',
+    'create' => 'status.create',
+    'store' => 'status.store',
+    'show' => 'status.show',
+    'edit' => 'status.edit',
+    'update' => 'status.update',
+    'destroy' => 'status.destroy',
+]);
