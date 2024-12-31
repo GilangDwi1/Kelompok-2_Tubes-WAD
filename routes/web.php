@@ -7,8 +7,10 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Middleware\AdminMiddleware;
+
 
 // ROUTE LOGIN
 Route::get('/', [LoginController::class, 'login'])->name('login');
@@ -39,4 +41,16 @@ Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
     Route::get('/{post}/edit', [MenuController::class, 'edit'])->name('edit'); // Edit form
     Route::put('/{post}', [MenuController::class, 'update'])->name('update'); // Update data
     Route::delete('/{menu}', [MenuController::class, 'destroy'])->name('destroy'); // Delete
+});
+
+// Feedback
+Route::resource('feedback', FeedbackController::class);
+
+Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], function () {
+    Route::get('/', [FeedbackController::class, 'index'])->name('index'); // Read
+    Route::get('/create', [FeedbackController::class, 'create'])->name('create'); // Create form
+    Route::post('/', [FeedbackController::class, 'store'])->name('store'); // Store data
+    Route::get('/{post}/edit', [FeedbackController::class, 'edit'])->name('edit'); // Edit form
+    Route::put('/{post}', [FeedbackController::class, 'update'])->name('update'); // Update data
+    Route::delete('/{post}', [FeedbackController::class, 'destroy'])->name('destroy'); // Delete
 });
