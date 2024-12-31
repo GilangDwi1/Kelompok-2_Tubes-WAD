@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('status', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-=======
-            $table->string('nama');
-            $table->string('isi');
->>>>>>> 33485ccea547c1b36116f7b10e48ec99815ced45
+            $table->string("nama");
+            $table->date("tanggal_pesanan"); 
+            $table->time("waktu_pemesanan"); 
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedback');
+        Schema::dropIfExists('status');
     }
 };

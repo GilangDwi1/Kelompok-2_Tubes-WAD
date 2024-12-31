@@ -11,6 +11,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\StatusController;
 
 
 // ROUTE LOGIN
@@ -18,14 +19,18 @@ Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 // ROUTES WITH AUTH MIDDLEWARE
+<<<<<<< HEAD
+// Admin Dashboard
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard');
+=======
     // Admin Dashboard
-Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware(['']);
+
+
+Route::get('/admin/dashboard', [MenuController::class, 'index'])->name('admin.dashboard')->middleware('admin');
+>>>>>>> 33485ccea547c1b36116f7b10e48ec99815ced45
 Route::get('/client/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
 
-    // // Home
-    // Route::get('home', [HomeController::class, 'index'])->name('home');
-
-    // // Logout
+// Logout
 Route::post('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout');
 
 // ROUTE REGISTER
@@ -42,6 +47,18 @@ Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
     Route::delete('/{menu}', [MenuController::class, 'destroy'])->name('destroy'); // Delete
 });
 
+<<<<<<< HEAD
+// ROUTE FOR STATUS MANAGEMENT
+Route::resource('status', StatusController::class)->names([
+    'index' => 'status.index',
+    'create' => 'status.create',
+    'store' => 'status.store',
+    'show' => 'status.show',
+    'edit' => 'status.edit',
+    'update' => 'status.update',
+    'destroy' => 'status.destroy',
+]);
+=======
 // Feedback
 Route::resource('feedback', FeedbackController::class);
 
@@ -53,6 +70,7 @@ Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], function () {
     Route::put('/{post}', [FeedbackController::class, 'update'])->name('update'); // Update data
     Route::delete('/{post}', [FeedbackController::class, 'destroy'])->name('destroy'); // Delete
 });
+<<<<<<< HEAD
 
 // Data Karyawan
 Route::resource('karyawan', KaryawanController::class);
@@ -65,3 +83,6 @@ Route::group(['prefix' => 'karyawan', 'as' => 'karyawan.'], function () {
     Route::put('/{post}', [KaryawanController::class, 'update'])->name('update'); // Update data
     Route::delete('/{post}', [KaryawanController::class, 'destroy'])->name('destroy'); // Delete
 });
+=======
+>>>>>>> 33485ccea547c1b36116f7b10e48ec99815ced45
+>>>>>>> e407fb8191af28c64464b38e065f500b4c3a7dbb

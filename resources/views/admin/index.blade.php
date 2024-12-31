@@ -29,7 +29,7 @@
             <h4 class="m-0">Daftar Menu</h4>
         </div>
         <div class="card-body">
-            @if ($menus->isEmpty())
+            @if ($menus->isEmpty());
                 <div class="text-center text-muted">
                     <p>Belum ada menu yang ditambahkan.</p>
                 </div>
@@ -52,7 +52,7 @@
                                 <td>{{ $menu->kategori }}</td>
                                 <td>
                                     {{-- <a href="{{ route('admin.show', $menu->id) }}" class="btn btn-outline-info btn-sm rounded-pill">Detail</a> --}}
-                                    {{-- <a href="{{ route('admin.edit', $menu->id) }}" class="btn btn-outline-warning btn-sm rounded-pill">Edit</a> --}}
+                                    <a href="{{ route('menu.edit', $menu->id) }}" class="btn btn-outline-warning btn-sm rounded-pill">Edit</a>
                                     <form action="{{ route('menu.destroy', $menu->id) }}" method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
