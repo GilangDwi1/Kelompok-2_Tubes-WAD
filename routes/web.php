@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Middleware\AdminMiddleware;
 
 
@@ -51,4 +52,16 @@ Route::group(['prefix' => 'feedback', 'as' => 'feedback.'], function () {
     Route::get('/{post}/edit', [FeedbackController::class, 'edit'])->name('edit'); // Edit form
     Route::put('/{post}', [FeedbackController::class, 'update'])->name('update'); // Update data
     Route::delete('/{post}', [FeedbackController::class, 'destroy'])->name('destroy'); // Delete
+});
+
+// Data Karyawan
+Route::resource('karyawan', KaryawanController::class);
+
+Route::group(['prefix' => 'karyawan', 'as' => 'karyawan.'], function () {
+    Route::get('/', [KaryawanController::class, 'index'])->name('index'); // Read
+    Route::get('/create', [KaryawanController::class, 'create'])->name('create'); // Create form
+    Route::post('/', [KaryawanController::class, 'store'])->name('store'); // Store data
+    Route::get('/{post}/edit', [KaryawanController::class, 'edit'])->name('edit'); // Edit form
+    Route::put('/{post}', [KaryawanController::class, 'update'])->name('update'); // Update data
+    Route::delete('/{post}', [KaryawanController::class, 'destroy'])->name('destroy'); // Delete
 });
